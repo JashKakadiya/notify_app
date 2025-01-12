@@ -166,7 +166,7 @@ def enter_text(request):
     text = data.get('text')
     try:
         Request_approve.objects.filter(transaction_id=trasaction_id).update(text=text)
-        return HttpResponse("Text entered successfully.", status=status.HTTP_200_OK)
+        return Response({'status': True,"message": text}, status=status.HTTP_200_OK)
     except Exception as e:
         return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
