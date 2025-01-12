@@ -2,3 +2,5 @@ venv
 images
 .env
 static
+migrations
+__pycache__

@@ -15,7 +15,7 @@ class Request_approve(models.Model):
     transaction_id = models.CharField(max_length=100)
     image=models.ImageField(upload_to='images/')
     text = models.TextField()
-    is_approved = models.BooleanField(default=False)
+    is_approved = models.CharField(max_length=255, default='pending')
     is_deleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

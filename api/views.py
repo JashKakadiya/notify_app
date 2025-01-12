@@ -37,11 +37,13 @@ def approve(request):
         user, is_authenticated = check_authentication(request)
         if not is_authenticated:
             return Response({"error": "Unauthorized"}, status=status.HTTP_401_UNAUTHORIZED)
-        Request_approve.objects.filter(transaction_id=transaction_id).update(is_approved=approve)
-        if approve == True:
+        if approve == 'approved':
+            Request_approve.objects.filter(transaction_id=transaction_id).update(is_approved='approved')
+            
             return Response({"status":"approved"}, status=status.HTTP_200_OK)
-        if approve == False:
-            return Response({"status":"not approved"}, status=status.HTTP_200_OK)
+        if approve == 'disapproved':
+            Request_approve.objects.filter(transaction_id=transaction_id).update(is_approved='disapproved')
+            return Response({"status":"disapproved"}, status=status.HTTP_200_OK)
         
     except Exception as e:
         return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

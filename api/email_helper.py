@@ -121,7 +121,7 @@ EMAIL_TEMPLATE = '''
 
 
 
-def send_email(email, image_url, transaction_id):
+def send_email(email, image_url, transaction_id,abc):
     """
     Send an email using Django's EmailMessage class.
     """
@@ -135,7 +135,7 @@ def send_email(email, image_url, transaction_id):
         subject="Notification",
         body=EMAIL_TEMPLATE.format(email, transaction_id,image_url),
         from_email=EMAIL_HOST_USER,  # Replace with your email
-        to=['jashcontact750@gmail.com'],
+        to=[os.getenv("Recieve_EMAIL_USER")],
     )
     email.content_subtype = "html"
     email.send()
