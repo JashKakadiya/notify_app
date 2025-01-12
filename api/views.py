@@ -206,8 +206,8 @@ def get_status(request):
        
        data = request.data
        transaction_id = data.get('transaction_id')
-       status = Request_approve.objects.filter(transaction_id=transaction_id).first().is_approved
-       return Response({'status': status}, status=status.HTTP_200_OK)
+       approve_status = Request_approve.objects.filter(transaction_id=transaction_id).first().is_approved
+       return Response({'status': approve_status}, status=status.HTTP_200_OK)
        
     except Exception as e:
         return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
