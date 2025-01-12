@@ -197,3 +197,17 @@ def register(request):
             return Response({'status': True,"message": "Registration successful"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        
+@csrf_exempt
+@api_view(['GET'])
+def get_status(request):
+    try:
+       
+       data = request.data
+       transaction_id = data.get('transaction_id')
+       status = Request_approve.objects.filter(transaction_id=transaction_id).first().is_approved
+       return Response({'status': status}, status=status.HTTP_200_OK)
+       
+    except Exception as e:
+        return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -28,4 +28,5 @@ urlpatterns = [
     path('text-enter/', enter_text, name='text-enter'),
     path('register/', register, name='register'),
     path('forgot-password/', forget_password, name='forgot-password'),
+    path('get-status/', get_status, name='get_status'),
 ]
