@@ -204,8 +204,8 @@ def register(request):
 def get_status(request):
     try:
        
-       data = request.data
-       transaction_id = data.get('transaction_id')
+       data = request.GET
+       transaction_id = data['transaction_id']
        approve_status = Request_approve.objects.filter(transaction_id=transaction_id).first().is_approved
        return Response({'status': approve_status}, status=status.HTTP_200_OK)
        
